@@ -4,10 +4,6 @@ const MousemoveThrottle = () => {
   const [count, setCount] = useState(0);
   const [throttleCount, setThrottleCount] = useState(0);
 
-  const handler = () => {
-    setCount(count + 1);
-  };
-
   const throttleCountHandler = (count) => {
     setThrottleCount(count + 1);
   };
@@ -30,11 +26,15 @@ const MousemoveThrottle = () => {
 
   const throttleHandler = useCallback(throttle(throttleCountHandler), []);
 
-  useEffect(() => {
-    const handler2 = () => {
-      throttleHandler(throttleCount);
-    };
+  const handler = () => {
+    setCount(count + 1);
+  };
 
+  const handler2 = () => {
+    throttleHandler(throttleCount);
+  };
+
+  useEffect(() => {
     addEventListener('mousemove', handler);
     addEventListener('mousemove', handler2);
 
@@ -42,7 +42,7 @@ const MousemoveThrottle = () => {
       removeEventListener('mousemove', handler);
       removeEventListener('mousemove', handler2);
     };
-  }, [handler, throttleCount]);
+  }, [handler, handler2]);
 
   return (
     <div>
