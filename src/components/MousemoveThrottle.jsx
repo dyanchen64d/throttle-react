@@ -37,9 +37,9 @@ const MousemoveThrottle = () => {
   }, [handler]);
 
   return (
-    <div>
-      <h3>Mousemove with Throttle: {count}</h3>
-    </div>
+    <>
+      <h3>Mousemove with throttle: {count}</h3>
+    </>
   );
 };
 
